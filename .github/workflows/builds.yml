@@ -157,7 +157,7 @@ jobs:
           WEBM_DIR="$(haxelib path extension-webm | head -1)"
           SRC="$WEBM_DIR/project/libwebm/mkvmuxerutil.cpp"
           if [ -f "$SRC" ] && ! grep -q '#include <unistd.h>' "$SRC"; then
-            { echo '#include <unistd.h>'; cat "$SRC"; } > "$SRC.tmp" && mv "$SRC.tmp" "$SRC"
+            sed -i 's/#include <fcntl.h>/#include <fcntl.h>\n#include <unistd.h>/' "$SRC"
           fi
 
       - name: Rebuild extension-webm
