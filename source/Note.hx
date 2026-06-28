@@ -129,7 +129,7 @@ class Note extends FlxSprite
 				if(burning){
 					if (daStage == 'auditorHell')
 					{
-						var exMechPrefix:String = PlayState.SONG.player2 == 'cryingEmoji' ? 'emoji/mech' : 'fourth/mech';
+						var exMechPrefix:String = PlayState.SONG.player2 == 'cryingEmoji' ? 'emoji/mech' : (PlayState.SONG.player2 == 'Mario' ? 'mario/mech' : 'fourth/mech');
 						frames = Paths.getSparrowAtlas(exMechPrefix + '/ALL_deathnotes', "clown");
 						animation.addByPrefix('greenScroll', 'Green Arrow');
 						animation.addByPrefix('redScroll', 'Red Arrow');
