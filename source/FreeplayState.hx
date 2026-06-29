@@ -158,7 +158,7 @@ class FreeplayState extends MusicBeatState
 
 		PlayState.storyDifficulty = diffToUse;
 
-		var poop:String = songs[selectedIndex].pognt == 'expurgation' && diffToUse == 1 ? 'expurgation-emoji' : Highscore.formatSong(songs[selectedIndex].pognt.toLowerCase(), diffToUse);
+		var poop:String = songs[selectedIndex].pognt == 'expurgation' && diff == 1 ? 'expurgation-emoji' : (songs[selectedIndex].pognt == 'expurgation' && diff == 2 ? 'expurgation-mario' : Highscore.formatSong(songs[selectedIndex].pognt.toLowerCase(), diffToUse));
 
 		PlayState.SONG = Song.loadFromJson(poop, songs[selectedIndex].pognt.toLowerCase());
 		PlayState.isStoryMode = false;
