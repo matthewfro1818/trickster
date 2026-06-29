@@ -2287,6 +2287,16 @@ class PlayState extends MusicBeatState
 										{
 											createSpookyText(ExTrickyLinesSing[FlxG.random.int(0,ExTrickyLinesSing.length)]);
 										}
+								case 'cryingEmoji': // 60% chance
+									if (FlxG.random.bool(60) && !spookyRendered && !daNote.isSustainNote) // create spooky text :flushed:
+										{
+											createSpookyText(ExTrickyLinesSing[FlxG.random.int(0,ExTrickyLinesSing.length)]);
+										}
+								case 'Mario': // 60% chance
+									if (FlxG.random.bool(60) && !spookyRendered && !daNote.isSustainNote) // create spooky text :flushed:
+										{
+											createSpookyText(ExTrickyLinesSing[FlxG.random.int(0,ExTrickyLinesSing.length)]);
+										}
 							}
 		
 		
