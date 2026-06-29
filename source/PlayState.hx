@@ -95,6 +95,7 @@ class PlayState extends MusicBeatState
 
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
+	private var opponentStrums:FlxTypedGroup<FlxSprite>;
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
@@ -640,6 +641,8 @@ class PlayState extends MusicBeatState
 		add(strumLineNotes);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
+
+		opponentStrums = new FlxTypedGroup<FlxSprite>();
 
 		// startCountdown();
 
@@ -1916,6 +1919,10 @@ class PlayState extends MusicBeatState
 			{
 				playerStrums.add(babyArrow);
 			}
+			else
+			{
+				opponentStrums.add(babyArrow);
+			}
 
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
@@ -2284,6 +2291,14 @@ class PlayState extends MusicBeatState
 		
 		
 							dad.holdTimer = 0;
+
+							opponentStrums.forEach(function(spr:FlxSprite)
+							{
+								if (spr != null && Math.abs(daNote.noteData) == spr.ID)
+								{
+									spr.animation.play('confirm', true);
+								}
+							});
 		
 							if (SONG.needsVoices)
 								vocals.volume = 1;
@@ -2739,17 +2754,44 @@ class PlayState extends MusicBeatState
 
 		playerStrums.forEach(function(spr:FlxSprite)
 		{
-			if (spr.animation.curAnim.name != 'confirm')
-				spr.animation.play('static');
-
-			if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+			if (spr == null) return;
+			if (spr.animation.curAnim != null && spr.animation.curAnim.name == 'confirm' && !spr.animation.curAnim.finished)
 			{
-				spr.centerOffsets();
-				spr.offset.x -= 13;
-				spr.offset.y -= 13;
+				if (!curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+				}
+				else
+					spr.centerOffsets();
 			}
 			else
+			{
+				spr.animation.play('static');
 				spr.centerOffsets();
+			}
+		});
+
+		opponentStrums.forEach(function(spr:FlxSprite)
+		{
+			if (spr == null) return;
+			if (spr.animation.curAnim != null && spr.animation.curAnim.name == 'confirm' && !spr.animation.curAnim.finished)
+			{
+				if (!curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+				}
+				else
+					spr.centerOffsets();
+			}
+			else
+			{
+				spr.animation.play('static');
+				spr.centerOffsets();
+			}
 		});
 	}
 
