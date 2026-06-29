@@ -114,7 +114,10 @@ class CachedFrames
             toBeLoaded.set('cln','fourth/Clone');
             toBeLoaded.set('signEmoji','emoji/mech/Sign_Post_Mechanic');
             toBeLoaded.set('gremEmoji','emoji/mech/HP GREMLIN');
-            toBeLoaded.set('clnEmoji','emoji/Clone');
+			toBeLoaded.set('clnEmoji','emoji/Clone');
+			toBeLoaded.set('clnMario','mario/Clone');
+            toBeLoaded.set('signMario','mario/mech/Sign_Post_Mechanic');
+            toBeLoaded.set('gremMario','mario/mech/HP GREMLIN');
             // all the big sprites
             var numba = 0;
             for(i in toBeLoaded.keys())
